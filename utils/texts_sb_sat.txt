@@ -1,0 +1,139 @@
+title	sentence_nr	sentence
+reading-dickens-1	0	Even then my only friends were made of paper and ink.
+reading-dickens-1	1	At school I had learned to read and write long before the other children.
+reading-dickens-1	2	Where my school friends saw notches of ink on incomprehensible pages, I saw light, streets, and people.
+reading-dickens-1	3	Words and the mystery of their hidden science fascinated me, and I saw in them a key with which I could unlock a boundless world, a safe haven from that home, those streets, and those troubled days in which even I could sense that only a limited fortune awaited me.
+reading-dickens-1	4	My father didn’t like to see books in the house.
+reading-dickens-1	5	There was something about them — apart from the letters he could not decipher — that offended him.
+reading-dickens-1	6	He used to tell me that as soon as I was ten he would send me off to
+reading-dickens-2	0	work and that I’d better get rid of all my scatterbrained ideas if I didn’t want to end up a loser, a nobody.
+reading-dickens-2	1	I used to hide my books under the mattress and wait for him to go out or fall asleep so that I could read.
+reading-dickens-2	2	Once he caught me reading at night and flew into a rage.
+reading-dickens-2	3	He tore the book from my hands and flung it out of the window.
+reading-dickens-2	4	“If I catch you wasting electricity again, reading all this nonsense, you’ll be sorry.”
+reading-dickens-2	5	My father was not a miser and, despite the hardships we suffered, whenever he could he gave me a few coins so that I could buy myself some treats like the other children.
+reading-dickens-2	6	He was convinced that I spent them on licorice sticks, sunflower
+reading-dickens-3	0	seeds, or sweets, but I would keep them in a coffee tin under the bed, and when I’d collected four or five reales I’d secretly rush out to buy myself a book.
+reading-dickens-3	1	My favorite place in the whole city was the Sempere & Sons bookshop on Calle Santa Ana.
+reading-dickens-3	2	It smelled of old paper and dust and it was my sanctuary, my refuge.
+reading-dickens-3	3	The bookseller would let me sit on a chair in a corner and read any book I liked to my heart’s content.
+reading-dickens-3	4	He hardly ever allowed me to pay for the books he placed in my hands, but when he wasn’t looking I’d leave the coins I’d managed to collect on the counter before I left.
+reading-dickens-3	5	It was only small change — if I’d had to buy a book with that pittance, I would probably have been able to afford only a booklet
+reading-dickens-4	0	of cigarette papers.
+reading-dickens-4	1	When it was time for me to leave, I would do so dragging my feet, a weight on my soul.
+reading-dickens-4	2	If it had been up to me, I would have stayed there forever.
+reading-dickens-4	3	One Christmas Sempere gave me the best gift I have ever received.
+reading-dickens-4	4	It was an old volume, read and experienced to the full.
+reading-dickens-4	5	“Great Expectations, by Charles Dickens,” I read on the cover.
+reading-dickens-4	6	I was aware that Sempere knew a few authors who frequented his establishment and, judging by the care with which he handled the volume, I thought perhaps this Mr. Dickens was one of them.
+reading-dickens-4	7	“A friend of yours?”
+reading-dickens-5	0	“A lifelong friend.
+reading-dickens-5	1	And from now on, he’s your friend too”
+reading-dickens-5	2	That afternoon I took my new friend home, hidden under my clothes so that my father wouldn’t see it.
+reading-dickens-5	3	It was a rainy winter, with days as gray as lead, and I read Great Expectations about nine times, partly because I had no other book at hand, partly because I did not think there could be a better one in the whole world and I was beginning to suspect that Mr. Dickens had written it just for me.
+reading-dickens-5	4	Soon I was convinced that I didn’t want to do anything else in life but learn to do what Mr. Dickens had done.
+reading-dickens-5	5	(FIN)
+reading-flytrap-1	0	The Venus flytrap [Dionaea muscipula] needs to know when an ideal meal is crawling across its leaves.
+reading-flytrap-1	1	Closing its trap requires a huge expense of energy, and reopening the trap can take several hours, so Dionaea only wants to spring closed when it’s sure that the dawdling insect visiting its surface is large enough to be worth its time.
+reading-flytrap-1	2	The large black hairs on their lobes allow the Venus flytraps to literally feel their prey, and they act as triggers that spring the trap closed when the proper prey makes its way across the trap.
+reading-flytrap-1	3	If the insect touches just one hair, the trap will not spring shut; but a large enough bug will likely touch two hairs within about twenty seconds, and that signal springs the Venus flytrap into action.
+reading-flytrap-2	0	We can look at this system as analogous to short-term memory.
+reading-flytrap-2	1	First, the flytrap encodes the information (forms the memory) that something (it doesn’t know what) has touched one of its hairs.
+reading-flytrap-2	2	Then it stores this information for a number of seconds (retains the memory) and finally retrieves this information (recalls the memory) once a second hair is touched.
+reading-flytrap-2	3	If a small ant takes a while to get from one hair to the next, the trap will have forgotten the first touch by the time the ant brushes up against the next hair.
+reading-flytrap-2	4	In other words, it loses the storage of the information, doesn’t close, and the ant happily meanders on.
+reading-flytrap-2	5	How does the plant encode and store the information from the unassuming bug’s encounter with the
+reading-flytrap-3	0	first hair?
+reading-flytrap-3	1	How does it remember the first touch in order to react upon the second?
+reading-flytrap-3	2	Scientists have been puzzled by these questions ever since John Burdon-Sanderson’s early report on the physiology of the Venus flytrap in 1882.
+reading-flytrap-3	3	A century later, Dieter Hodick and Andreas Sievers at the University of Bonn in Germany proposed that the flytrap stored information regarding how many hairs have been touched in the electric charge of its leaf.
+reading-flytrap-3	4	Their model is quite elegant in its simplicity.
+reading-flytrap-3	5	In their studies, they discovered that touching a trigger hair on the Venus flytrap causes an electric action potential [a temporary reversal in the electrical polarity of a cell membrane] that induces calcium channels to open in the trap
+reading-flytrap-4	0	(this coupling of action potentials and the opening of calcium channels is similar to the processes that occur during communication between human neurons), thus causing a rapid increase in the concentration of calcium ions.
+reading-flytrap-4	1	They proposed that the trap requires a relatively high concentration of calcium in order to close and that a single action potential from just one trigger hair being touched does not reach this level.
+reading-flytrap-4	2	Therefore, a second hair needs to be stimulated to push the calcium concentration over this threshold and spring the trap.
+reading-flytrap-4	3	The encoding of the information requires maintaining a high enough level of calcium so that a second increase (triggered by touching the second hair) pushes
+reading-flytrap-5	0	the total concentration of calcium over the threshold.
+reading-flytrap-5	1	As the calcium ion concentrations dissipate over time, if the second touch and potential don’t happen quickly, the final concentration after the second trigger won’t be high enough to close the trap, and the memory is lost.
+reading-flytrap-5	2	Subsequent research supports this model.
+reading-flytrap-5	3	Alexander Volkov and his colleagues at Oakwood University in Alabama first demonstrated that it is indeed electricity that causes the Venus flytrap to close.
+reading-flytrap-5	4	To test the model they rigged up very fine electrodes and applied an electrical current to the open lobes of the trap.
+reading-flytrap-5	5	This made the trap close without any direct touch to its trigger hairs (while they
+reading-flytrap-6	0	didn’t measure calcium levels, the current likely led to increases).
+reading-flytrap-6	1	When they modified this experiment by altering the amount of electrical current, Volkov could determine the exact electrical charge needed for the trap to close.
+reading-flytrap-6	2	As long as fourteen microcoulombs — a tiny bit more than the static electricity generated by rubbing two balloons together — flowed between the two electrodes, the trap closed.
+reading-flytrap-6	3	This could come as one large burst or as a series of smaller charges within twenty seconds.
+reading-flytrap-6	4	If it took longer than twenty seconds to accumulate the total charge, the trap would remain open.
+reading-flytrap-6	5	(FIN)
+reading-genome-1	0	When scientists first learned how to edit the genomes of animals, they began to imagine all the ways they could use this new power.
+reading-genome-1	1	Creating brightly colored novelty pets was not a high priority.
+reading-genome-1	2	Instead, most researchers envisioned far more consequential applications, hoping to create genetically engineered animals that saved human lives.
+reading-genome-1	3	One enterprise is now delivering on this dream.
+reading-genome-1	4	Welcome to the world of “pharming,” in which simple genetic tweaks turn animals into living pharmaceutical factories.
+reading-genome-1	5	Many of the proteins that our cells crank out naturally make for good medicine.
+reading-genome-1	6	Our bodies’ own enzymes, hormones, clotting factors, and antibodies
+reading-genome-2	0	are commonly used to treat cancer, diabetes, autoimmune diseases, and more.
+reading-genome-2	1	The trouble is that it’s difficult and expensive to make these compounds on an industrial scale, and as a result, patients can face shortages of the medicines they need.
+reading-genome-2	2	Dairy animals, on the other hand, are expert protein producers, their udders swollen with milk.
+reading-genome-2	3	So the creation of the first transgenic animals — first mice, then other species — in the 1980s gave scientists an idea: What if they put the gene for a human antibody or enzyme into a cow, goat, or sheep?
+reading-genome-2	4	If they put the gene in just the right place, under the control of the right molecular switch, maybe they could engineer animals that produced healing human proteins in their milk.
+reading-genome-2	5	Then doctors could collect
+reading-genome-3	0	medicine by the bucketful.
+reading-genome-3	1	Throughout the 1980s and ’90s, studies provided proof of principle, as scientists created transgenic mice, sheep, goats, pigs, cattle, and rabbits that did in fact make therapeutic compounds in their milk.
+reading-genome-3	2	At first, this work was merely gee-whiz, scientific geekery, lab-bound thought experiments come true.
+reading-genome-3	3	That all changed with ATryn, a drug produced by the Massachusetts firm GTC Biotherapeutics.
+reading-genome-3	4	ATryn is antithrombin, an anticoagulant that can be used to prevent life-threatening blood clots.
+reading-genome-3	5	The compound, made by our liver cells, plays a key role in keeping our bodies clot-free.
+reading-genome-3	6	It acts as a molecular bouncer, sidling up to
+reading-genome-4	0	clot-forming compounds and escorting them out of the bloodstream.
+reading-genome-4	1	But as many as 1 in 2,000 Americans are born with a genetic mutation that prevents them from making antithrombin.
+reading-genome-4	2	These patients are prone to clots, especially in their legs and lungs, and they are at elevated risk of suffering from fatal complications during surgery and childbirth.
+reading-genome-4	3	Supplemental antithrombin can reduce this risk, and GTC decided to try to manufacture the compound using genetically engineered goats.
+reading-genome-4	4	To create its special herd of goats, GTC used microinjection, the same technique that produced GloFish and AquAdvantage salmon.
+reading-genome-4	5	The company’s scientists took the gene for human antithrombin and injected it directly into
+reading-genome-5	0	goat eggs.
+reading-genome-5	1	Then they implanted the eggs in the wombs of female goats.
+reading-genome-5	2	When the kids were born, some of them proved to be transgenic, the human gene nestled safely in their cells.
+reading-genome-5	3	The researchers paired the antithrombin gene with a promoter (which is a sequence of DNA that controls gene activity) that is normally active in the goat’s mammary glands during milk production.
+reading-genome-5	4	When the transgenic females lactated, the promoter turned the transgene on and the goats’ udders filled with milk containing antithrombin.
+reading-genome-5	5	All that was left to do was to collect the milk, and extract and purify the protein.
+reading-genome-5	6	Et voilà — human medicine!
+reading-genome-5	7	And, for GTC, liquid gold.
+reading-genome-5	8	ATryn hit the market in 2006, becoming the world’s first transgenic animal
+reading-genome-6	0	drug.
+reading-genome-6	1	Over the course of a year, the “milking parlors” on GTC’s 300-acre farm in Massachusetts can collect more than a kilogram of medicine from a single animal.
+reading-genome-6	2	(FIN)
+reading-northpole-1	0	My emotions are complicated and not readily verifiable.
+reading-northpole-1	1	I feel a vast yearning that is simultaneously a pleasure and a pain.
+reading-northpole-1	2	I am certain of the consummation of this yearning, but I don’t know yet what form it will take, since I do not understand quite what it is that the yearning desires.
+reading-northpole-1	3	For the first time there is borne in upon me the full truth of what I myself said to the doctor only an hour ago: that my motives in this undertaking are not entirely clear.
+reading-northpole-1	4	For years, for a lifetime, the machinery of my destiny has worked in secret to prepare for this moment; its clockwork has moved exactly toward this time and place and no other.
+reading-northpole-1	5	Rising slowly from the earth that bore me and gave me sustenance, I am carried helplessly toward an
+reading-northpole-2	0	uninhabited and hostile, or at best indifferent, part of the earth, littered with the bones of explorers and the wrecks of ships, frozen supply caches, messages scrawled with chilled fingers and hidden in cairns that no eye will ever see.
+reading-northpole-2	1	Nobody has succeeded in this thing, and many have died.
+reading-northpole-2	2	Yet in freely willing this enterprise, in choosing this moment and no other when the south wind will carry me exactly northward at a velocity of eight knots, I have converted the machinery of my fate into the servant of my will.
+reading-northpole-2	3	All this I understand, as I understand each detail of the technique by which this is carried out.
+reading-northpole-2	4	What I don’t understand is why I am so intent on going to this
+reading-northpole-3	0	particular place.
+reading-northpole-3	1	Who wants the North Pole!
+reading-northpole-3	2	What good is it!
+reading-northpole-3	3	Can you eat it?
+reading-northpole-3	4	Will it carry you from Gothenburg to Malmö like a railway?
+reading-northpole-3	5	The Danish ministers have declared from their pulpits that participation in polar expeditions is beneficial to the soul’s eternal well-being, or so I read in a newspaper.
+reading-northpole-3	6	It isn’t clear how this doctrine is to be interpreted, except that the Pole is something difficult or impossible to attain which must nevertheless be sought for, because man is condemned to seek out and know everything whether or not the knowledge gives him pleasure.
+reading-northpole-3	7	In short, it is the same unthinking lust for knowledge that drove our First Parents out of the garden.
+reading-northpole-4	0	And suppose you were to find it in spite of all, this wonderful place that everybody is so anxious to stand on!
+reading-northpole-4	1	What would you find?
+reading-northpole-4	2	Exactly nothing.
+reading-northpole-4	3	A point precisely identical to all the others in a completely featureless wasteland stretching around it for hundreds of miles.
+reading-northpole-4	4	It is an abstraction, a mathematical fiction.
+reading-northpole-4	5	No one but a Swedish madman could take the slightest interest in it.
+reading-northpole-4	6	Here I am.
+reading-northpole-4	7	The wind is still from the south, bearing us steadily northward at the speed of a trotting dog.
+reading-northpole-4	8	Behind us, perhaps forever, lie the Cities of Men with their teacups and their brass bedsteads.
+reading-northpole-4	9	I am going forth of my own volition to join the ghosts of Bering and poor Franklin, of frozen De Long and his men.
+reading-northpole-4	10	What I am on the
+reading-northpole-5	0	brink of knowing, I now see, is not an ephemeral mathematical spot but myself.
+reading-northpole-5	1	The doctor was right, even though I dislike him.
+reading-northpole-5	2	Fundamentally I am a dangerous madman, and what I do is both a challenge to my egotism and a surrender to it.
+reading-northpole-5	3	(FIN)
