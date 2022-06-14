@@ -18,6 +18,7 @@ or
 git clone https://github.com/aeye-lab/etra-reading-comprehension
 ```
 depending on your preferences and settings.
+Afterward, change into the directory by using `cd etra-reading-comprehension`.
 
 ### Download the data
 You can download the publicly available data here
