@@ -180,7 +180,7 @@ def train_nn(
                 'book': 1,
                 'subj-book': 0,
             }
-            with open('npy_files/labels_dict.json') as fp:
+            with open('paper_splits/labels_dict.json') as fp:
                 label_dict = json.load(fp)
 
             if (split_criterion == 'book') or (split_criterion == 'subj-book'):
