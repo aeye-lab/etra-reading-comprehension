@@ -35,7 +35,7 @@ tf_session = tf.compat.v1.Session(config=config)
 
 def get_model(
     model_name: str,
-    input_shape: Tuple[int, int] = (398, 1027),
+    input_shape: Tuple[int, int] = (398, 4),
 ) -> Model:
     if model_name == 'rnn':
         model = Sequential()
@@ -119,11 +119,11 @@ def evaluate_model(
     model_name,
     split_criterion,
     label,
-    input_window,
     save_path,
     label_dict,
 ):
-    SB_SAT_PATH = f'paper_splits/{split_criterion}/'  # noqa: E501
+    input_shape = (398, 4)
+    SB_SAT_PATH = f'paper_splits/{split_criterion}/'
     split_criterion_dict = {
         'subj': 0,
         'book': 1,
@@ -159,6 +159,7 @@ def evaluate_model(
         x_train_all, y_train_all = np.load(X_train_path), np.load(
             y_train_path, allow_pickle=True,
         )
+        x_train_all = x_train_all[:, :, [0, 1, 2, 3]]
         scaler = MinMaxScaler()
         x_train_all = scaler.fit_transform(
             x_train_all.reshape(-1, x_train_all.shape[-1]),
@@ -250,7 +251,7 @@ def evaluate_model(
             batch_size=256,
             validation_data=(x_val, y_val),
             callbacks=callbacks_list,
-            verbose=0,
+            verbose=2,
         )
 
         X_test_path = os.path.join(
@@ -262,6 +263,7 @@ def evaluate_model(
         x_test, y_test = np.load(X_test_path), np.load(
             y_test_path, allow_pickle=True,
         )
+        x_test = x_test[: , :, [0, 1, 2, 3]]
         x_test = scaler.transform(
             x_test.reshape(-1, x_test.shape[-1]),
         ).reshape(x_test.shape)
@@ -317,9 +319,12 @@ def evaluate_model(
 
 def main() -> int:
 
+    with open('paper_splits/labels_dict.json') as fp:
+        label_dict = json.load(fp)
     model_names = ['rnn', 'dense', 'cnn1']
     split_criterions = ['subj', 'book-page', 'subj', 'book']
     predictions = ['subj_acc_level', 'acc_level', 'native', 'difficulty']
+    os.makedirs('paper_results')
     for model_name in model_names:
         for split_criterion in split_criterions:
             for predict in predictions:
@@ -327,7 +332,8 @@ def main() -> int:
                     model_name=model_name,
                     split_criterion=split_criterion,
                     label=predict,
-                    save_path=f"paper_results/{model_name}_{split_criterion}_{predict}.csv",
+                    save_path=f"paper_results/ahn_{model_name}_{split_criterion}_{predict}.csv",
+                    label_dict=label_dict,
                 )
     return 0
 
