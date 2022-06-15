@@ -78,11 +78,12 @@ def parse_dependency(text) -> Tuple[
         nlp.vocab, token_match=re.compile(r'\S+').match,
     )
     doc = nlp(text)
-    n_rights: List[List[int]] = [[] for _ in range(len(text.split()))]
-    n_lefts: List[List[int]] = [[] for _ in range(len(text.split()))]
-    rights: List[List[str]] = [[] for _ in range(len(text.split()))]
-    lefts: List[List[str]] = [[] for _ in range(len(text.split()))]
-    deps: List[List[int]] = [[] for _ in range(len(text.split()))]
+    n_rights = [[] for _ in range(len(text.split()))]
+    n_lefts = [[] for _ in range(len(text.split()))]
+    rights = [[] for _ in range(len(text.split()))]
+    lefts = [[] for _ in range(len(text.split()))]
+    deps = [[] for _ in range(len(text.split()))]
+    dep_distance = [[] for _ in range(len(text.split()))]
 
     for idx, token in enumerate(doc):
         deps[idx] = token.dep_
@@ -90,7 +91,9 @@ def parse_dependency(text) -> Tuple[
         lefts[idx] = list(token.lefts)
         n_rights[idx] = token.n_rights
         n_lefts[idx] = token.n_lefts
-    return deps, n_rights, rights, n_lefts, lefts
+        dep_distance[idx] = token.i - token.head.i
+
+    return deps, n_rights, rights, n_lefts, lefts, dep_distance
 
 
 # create counts for entities
