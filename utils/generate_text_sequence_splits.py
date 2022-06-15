@@ -1,13 +1,14 @@
 import json
+import os
 import random
 from typing import Any
 from typing import Dict
 from typing import List
 from typing import Tuple
 
+import feature_extraction
 import numpy as np
 import pandas as pd
-import rf_baseline.rf_feature_extraction as rfe
 from sklearn.model_selection import KFold
 from tqdm import tqdm
 
@@ -101,7 +102,7 @@ def load_text_sequence_data() -> Tuple[np.array, ...]:
                     fix_aoi_id[cur_list_element-4].extend(text_sub_df.loc[text_sub_df.CURRENT_FIX_INTEREST_AREA_ID == cur_fix].CURRENT_FIX_INTEREST_AREA_ID.values.tolist())  # noqa: E501
                     prev_fix_aoi_id[cur_list_element-4].extend([text_sub_df.iloc[idx - 1].CURRENT_FIX_INTEREST_AREA_ID for idx in text_sub_df.loc[text_sub_df.CURRENT_FIX_INTEREST_AREA_ID == cur_fix].index.values.tolist()])  # noqa: E501
                     fixation_distance[cur_list_element-4] = [0 if (np.isnan(x) and np.isnan(y)) else 0 if (np.isnan(x) or np.isnan(y)) else x - y for x, y in zip(fix_aoi_id[cur_list_element-4], prev_fix_aoi_id[cur_list_element-4])]  # noqa: E501
-            features, features_names = rfe.get_linguistic_features_for_lists(
+            features, features_names = feature_extraction.get_linguistic_features_for_lists(
                 fixation_list=fixation_durations,
                 fixations_numbers=fixation_id,
                 regression_values=fixation_distance,
