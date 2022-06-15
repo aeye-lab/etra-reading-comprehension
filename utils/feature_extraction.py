@@ -600,7 +600,6 @@ def get_list_of_entities(input_word_list):
             out_list.append(list(human_readable_dict.keys())[0])
     return out_list
 
-# create feature vector for rf from word features
 # params:
 #       data: n x n_words x n_features matrix with features for each word
 #       feature_names: features_names (vector of length n_features)
@@ -988,7 +987,7 @@ def get_features_from_df_list_categorical(df_list, use_cols=['PREVIOUS_SAC_DIREC
 
 
 def get_combined_features(df_list):
-    data_arr_rf_numeric, feature_names_numeric = get_features_from_df_list_numeric(
+    data_arr_numeric, feature_names_numeric = get_features_from_df_list_numeric(
         df_list,
         use_cols=[
             'CURRENT_FIX_X',
@@ -1003,7 +1002,7 @@ def get_combined_features(df_list):
         ],
         feature_aggregations=['mean', 'std', 'median', 'skew', 'kurtosis'],
     )
-    data_arr_rf_cat, feature_names_cat = get_features_from_df_list_categorical(
+    data_arr_cat, feature_names_cat = get_features_from_df_list_categorical(
         df_list,
         use_cols=[
             'PREVIOUS_SAC_DIRECTION',
@@ -1015,13 +1014,13 @@ def get_combined_features(df_list):
         df_list,
     )
 
-    data_arr_rf = np.hstack(
-        [data_arr_rf_numeric, data_arr_rf_cat, lexical_features],
+    data_arr = np.hstack(
+        [data_arr_numeric, data_arr_cat, lexical_features],
     )
-    feature_names_rf = list(feature_names_numeric) + list(feature_names_cat) +\
+    feature_names= list(feature_names_numeric) + list(feature_names_cat) +\
         list(lexical_feature_names)
 
-    data_arr_rf = np.nan_to_num(data_arr_rf, nan=-1)
-    data_arr_rf = np.nan_to_num(data_arr_rf.astype(np.float32))
+    data_arr = np.nan_to_num(data_arr, nan=-1)
+    data_arr = np.nan_to_num(data_arr.astype(np.float32))
 
-    return data_arr_rf, feature_names_rf
+    return data_arr, feature_names
