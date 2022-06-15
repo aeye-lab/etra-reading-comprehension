@@ -1,7 +1,7 @@
-numpy==1.19.5
-spacy==3.2.1
 joblib==0.17.0
-tensorflow==2.6.0
-scipy==1.7.3
-tqdm==4.50.2
+numpy==1.19.5
 scikit_learn==1.1.1
+scipy==1.7.3
+spacy==3.2.1
+tensorflow==2.6.0
+tqdm==4.50.2

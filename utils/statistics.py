@@ -37,6 +37,7 @@ def check_nan_aoi_fixations_in_reading_data() -> int:
     )
     return 0
 
+
 def main() -> int:
     test_mapping()
     check_nan_aoi_fixations_in_reading_data()

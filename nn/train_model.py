@@ -18,27 +18,25 @@ def main():
 
     for flag_sequence_bilstm in flags_sequence_bilstm:
         for word_in_fixation_order in word_in_fixation_orders:
-            for use_pos_sequence in use_pos_sequences:
-                for use_reduced_pos_sequence in use_reduced_pos_sequences:
-                    for use_entity_sequence in use_entity_sequences:
-                        for use_content_word_sequence in use_content_word_sequences:
-                            for use_numeric in use_numerics:
-                                for use_fixation_sequence in use_fixation_sequences:
-                                    param_strings.append(
-                                        '-flag_sequence_bilstm ' + str(flag_sequence_bilstm) +
-                                        ' -word_in_fixation_order ' + str(word_in_fixation_order) +
-                                        ' -use_reduced_pos_sequence ' + str(use_reduced_pos_sequence) +
-                                        ' -use_content_word_sequence ' + str(use_content_word_sequence) +
-                                        ' -use_numeric ' + str(use_numeric) +
-                                        ' -use_fixation_sequence ' +
-                                        str(use_fixation_sequence),
-                                    )
+            for use_reduced_pos_sequence in use_reduced_pos_sequences:
+                for use_content_word_sequence in use_content_word_sequences:
+                    for use_numeric in use_numerics:
+                        for use_fixation_sequence in use_fixation_sequences:
+                            param_strings.append(
+                                '-flag_sequence_bilstm ' + str(flag_sequence_bilstm) +
+                                ' -word_in_fixation_order ' + str(word_in_fixation_order) +
+                                ' -use_reduced_pos_sequence ' + str(use_reduced_pos_sequence) +
+                                ' -use_content_word_sequence ' + str(use_content_word_sequence) +
+                                ' -use_numeric ' + str(use_numeric) +
+                                ' -use_fixation_sequence ' +
+                                str(use_fixation_sequence),
+                            )
 
     save_dir = 'nn/results/'
-    os.makedirs(save_dir)
+    os.makedirs(save_dir, exist_ok=True)
     script_path = 'nn/scripts/'
-    os.makedirs(script_path)
-    
+    os.makedirs(script_path, exist_ok=True)
+
     param_strings = np.random.permutation(param_strings)
 
     num_per_gpu = int(np.ceil(len(param_strings) / len(gpu_numbers)))
@@ -49,7 +47,7 @@ def main():
         gpu_commands = ''
         for i in range(num_per_gpu):
             if counter < len(param_strings):
-                cur_command = 'python model.py -GPU ' + str(gpu) + ' ' +\
+                cur_command = 'python nn/model.py -GPU ' + str(gpu) + ' ' +\
                     param_strings[counter] + ' -save_dir ' +\
                     save_dir
                 gpu_commands += cur_command + '\n'

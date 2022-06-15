@@ -263,7 +263,7 @@ def evaluate_model(
         x_test, y_test = np.load(X_test_path), np.load(
             y_test_path, allow_pickle=True,
         )
-        x_test = x_test[: , :, [0, 1, 2, 3]]
+        x_test = x_test[:, :, [0, 1, 2, 3]]
         x_test = scaler.transform(
             x_test.reshape(-1, x_test.shape[-1]),
         ).reshape(x_test.shape)
@@ -332,7 +332,7 @@ def main() -> int:
                     model_name=model_name,
                     split_criterion=split_criterion,
                     label=predict,
-                    save_path=f"paper_results/ahn_{model_name}_{split_criterion}_{predict}.csv",
+                    save_path=f'paper_results/ahn_{model_name}_{split_criterion}_{predict}.csv',
                     label_dict=label_dict,
                 )
     return 0

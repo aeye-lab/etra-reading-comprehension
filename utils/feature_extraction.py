@@ -4,7 +4,6 @@ from typing import List
 from typing import Tuple
 
 import numpy as np
-import pandas as pd
 import spacy.attrs
 from scipy.stats import kurtosis
 from scipy.stats import skew
@@ -71,7 +70,9 @@ reduced_pos_dict = {
 #       n_lefts: number of dependencies to the left
 #       lefts: dependencies to the left
 def parse_dependency(text) -> Tuple[
-    List[List[int]], List[List[int]], List[List[str]], List[List[int]], List[List[str]],
+    List[List[int]], List[List[int]], List[
+        List[str]
+    ], List[List[int]], List[List[str]],
 ]:
     nlp = spacy.load('en_core_web_sm')
     nlp.tokenizer = spacy.tokenizer.Tokenizer(
@@ -136,7 +137,9 @@ def get_entity_count_features(input_word_list):
 #       out_mapping_dict: mapping from input strings to ids
 
 
-def convert_to_sequence_to_nn_input(input_list_list, input_feature_names, max_input_len, mapping_dict=None):
+def convert_to_sequence_to_nn_input(
+    input_list_list, input_feature_names, max_input_len, mapping_dict=None,
+):
     out_matrix = np.zeros([len(input_list_list), max_input_len])
     if mapping_dict is not None:
         out_mapping_dict = mapping_dict
@@ -152,7 +155,7 @@ def convert_to_sequence_to_nn_input(input_list_list, input_feature_names, max_in
                 out_mapping_dict[cur_ins] = len(out_mapping_dict) + 1
             try:
                 out_matrix[i, j] = out_mapping_dict[cur_ins]
-            except:
+            except KeyError:
                 pass
     return out_matrix, out_mapping_dict
 
@@ -183,7 +186,7 @@ def convert_to_sequence_to_nn_input_fixation(
             cur_word = cur_words[cur_ins]
             try:
                 out_matrix[i, j] = out_mapping_dict[cur_word]
-            except:
+            except KeyError:
                 pass
     return out_matrix
 
@@ -269,10 +272,22 @@ def get_watched_pos_entity_lists(data, input_feature_names, fix_postions=None):
             if len(pos_id) == 1:
                 pos_list.append(pos_feature_names[int(pos_id[0])])
                 reduced_pos_list.append(
-                    reduced_pos_dict[pos_feature_names[int(pos_id[0])].replace('is_pos_', '')],
+                    reduced_pos_dict[
+                        pos_feature_names[
+                            int(
+                                pos_id[0],
+                            )
+                        ].replace('is_pos_', '')
+                    ],
                 )
                 content_list.append(
-                    content_word_dict[pos_feature_names[int(pos_id[0])].replace('is_pos_', '')],
+                    content_word_dict[
+                        pos_feature_names[
+                            int(
+                                pos_id[0],
+                            )
+                        ].replace('is_pos_', '')
+                    ],
                 )
             else:
                 pos_list.append('UNKNOWN')
@@ -292,14 +307,14 @@ def get_watched_pos_entity_lists(data, input_feature_names, fix_postions=None):
                     cur_watched_word_id = word_id_dict[cur_fix_postions[p_id]]
                     if cur_watched_word_id > 0:
                         position_ind_list.append(cur_watched_word_id)
-                except:
+                except KeyError:
                     pass
         pos_list_list.append(pos_list)
         entity_list_list.append(entity_list)
         reduced_pos_list_list.append(reduced_pos_list)
         content_list_list.append(content_list)
         position_ind_list_list.append(position_ind_list)
-    return pos_list_list, entity_list_list, reduced_pos_list_list, content_list_list, pos_feature_names, entity_feature_names, reduced_pos_feature_names, content_feature_names, position_ind_list_list
+    return pos_list_list, entity_list_list, reduced_pos_list_list, content_list_list, pos_feature_names, entity_feature_names, reduced_pos_feature_names, content_feature_names, position_ind_list_list  # noqa: E501
 
 
 # create features from Berzak papers
@@ -329,7 +344,7 @@ def get_linguistic_features_for_lists(
 
     def get_word_cluster(word, word_cluster_thresholds=[(1, 1), (2, 2), (3, 3)]):
         for i in range(len(word_cluster_thresholds)):
-            if len(word) >= word_cluster_thresholds[i][0] and len(word) <= word_cluster_thresholds[i][1]:
+            if len(word) >= word_cluster_thresholds[i][0] and len(word) <= word_cluster_thresholds[i][1]:  # noqa: E501
                 return i
         return -1
 
@@ -345,7 +360,6 @@ def get_linguistic_features_for_lists(
     deps, n_rights, rights, n_lefts, lefts, dep_distance = parse_dependency(
         ' '.join(word_list),
     )
-    #print(' '.join(word_list) + ' ' + str(n_rights))
 
     complete_sentence_tf_fixations = dict()
     complete_sentence_ff_fixations = dict()
@@ -383,7 +397,6 @@ def get_linguistic_features_for_lists(
             cur_word, word_cluster_thresholds=word_cluster_thresholds,
         )
         if cluster_id != -1:
-            #print(str(cluster_id) + ' for: ' + str(cur_word))
             if cluster_id not in word_cluster_threshold_tf_fixations:
                 word_cluster_threshold_tf_fixations[cluster_id] = []
                 word_cluster_threshold_ff_fixations[cluster_id] = []
@@ -454,7 +467,8 @@ def get_linguistic_features_for_lists(
 
     feature_matrix = np.zeros([
         num_numeric_features + num_entity_feature +
-        num_pos_feature + num_content_word_feature + num_reduced_pos_feature, len(word_list),
+        num_pos_feature + num_content_word_feature +
+        num_reduced_pos_feature, len(word_list),
     ])
 
     for w_i in range(len(word_list)):
@@ -530,29 +544,25 @@ def get_linguistic_features_for_lists(
         try:
             cur_ent_id = entity_id_dict[cur_entity]
             feature_matrix[cur_ent_id, w_i] = 1
-        except:
-            #print(cur_entity + ' not found')
+        except KeyError:
             pass
         # cur_pos
         try:
             cur_pos_id = pos_id_dict[cur_pos]
             feature_matrix[cur_pos_id, w_i] = 1
-        except:
-            #print(cur_pos + ' not found')
+        except KeyError:
             pass
         # cur_content_word
         try:
             cur_id = content_word_id_dict[cur_content_word]
             feature_matrix[cur_id, w_i] = 1
-        except:
-            #print(cur_content_word + ' not found')
+        except KeyError:
             pass
         # cur_reduced_pos
         try:
             cur_id = reduced_pos_id_dict[cur_reduced_pos]
             feature_matrix[cur_id, w_i] = 1
-        except:
-            #print(cur_reduced_pos + ' not found')
+        except KeyError:
             pass
 
     return feature_matrix, feature_names
@@ -641,7 +651,10 @@ def get_features_for_word_features(
         cur_feature_vector.append(n_words)
         fixation_feature_id = np.where(np.array(feature_names) == 'ff')[0]
         fixation_indicator = np.array(
-            [int(cur_instance[a, fixation_feature_id] > 0) for a in range(cur_instance.shape[0])],
+            [
+                int(cur_instance[a, fixation_feature_id] > 0)
+                for a in range(cur_instance.shape[0])
+            ],
         )
         n_fixations = np.sum(fixation_indicator)
         if i == 0:
@@ -768,13 +781,10 @@ def get_gaze_entropy_features(
         (values, counts) = np.unique(cur_destination_list, return_counts=True)
         inner_sum = 0
         for i in range(len(values)):
-            cur_val = values[i]
             cur_count = counts[i]
             cur_prob = cur_count / np.sum(counts)
             cur_entropy = entropy(cur_prob)
             inner_sum += cur_entropy
-        #print('cur_patch_prop: ' + str(cur_patch_prop))
-        #print('inner_sum: ' + str(inner_sum))
         gte += (cur_patch_prop * inner_sum)
     gte = gte * -1
 
@@ -836,14 +846,14 @@ def get_avg_word_embedding_spacy(input_word_list, lemma=True, skip_list=['nan'])
             cur_vec = cur_word_nlp.vector
             out_vector += cur_vec
             counter += 1
-        except:
+        except KeyError:
             continue
     if counter > 0:
         out_vector /= counter
     if lemma:
-        return out_vector, ['lexical_word_embedding_spacy_lemma_' + str(a) for a in range(len(out_vector))]
+        return out_vector, ['lexical_word_embedding_spacy_lemma_' + str(a) for a in range(len(out_vector))]  # noqa: E501
     else:
-        return out_vector, ['lexical_word_embedding_spacy_' + str(a) for a in range(len(out_vector))]
+        return out_vector, ['lexical_word_embedding_spacy_' + str(a) for a in range(len(out_vector))]  # noqa: E501
 
 
 # create all lexical features
@@ -925,7 +935,11 @@ def get_feature_from_list(values, aggregation_function):
 #   df_list: list of dataframes containing the data for user, book, page
 #   use_cols: list of columns to extract features from
 #   feature_aggregations: list of aggregations performed on list of values
-def get_features_from_df_list_numeric(df_list, use_cols=[], feature_aggregations=['mean', 'std', 'median', 'skew', 'kurtosis']):
+def get_features_from_df_list_numeric(
+    df_list, use_cols=[], feature_aggregations=[
+        'mean', 'std', 'median', 'skew', 'kurtosis',
+    ],
+):
     feature_number = len(feature_aggregations) * len(use_cols)
     feature_names = []
     out_feature_matrix = np.zeros([len(df_list), feature_number])
@@ -955,7 +969,11 @@ def get_features_from_df_list_numeric(df_list, use_cols=[], feature_aggregations
 #   feature_values: list of list of different values
 
 
-def get_features_from_df_list_categorical(df_list, use_cols=['PREVIOUS_SAC_DIRECTION'], feature_values=[['DOWN', 'LEFT', 'RIGHT', 'UP']]):
+def get_features_from_df_list_categorical(
+    df_list,
+    use_cols=['PREVIOUS_SAC_DIRECTION'],
+    feature_values=[['DOWN', 'LEFT', 'RIGHT', 'UP']],
+) -> Tuple[Any, List[str]]:
     feature_number = 0
     for use_col, cur_feature_values in zip(use_cols, feature_values):
         feature_number += (2 * len(cur_feature_values))
@@ -964,7 +982,6 @@ def get_features_from_df_list_categorical(df_list, use_cols=['PREVIOUS_SAC_DIREC
     data_number = 0
     for cur_df in tqdm(df_list):
         feature_id = 0
-        feat_number = 0
         for use_col, cur_feature_values in zip(use_cols, feature_values):
             # print(use_col)
             cur_feats = np.array(cur_df[use_col], dtype=np.str)
@@ -1020,7 +1037,7 @@ def get_combined_features(df_list):
     data_arr = np.hstack(
         [data_arr_numeric, data_arr_cat, lexical_features],
     )
-    feature_names= list(feature_names_numeric) + list(feature_names_cat) +\
+    feature_names = list(feature_names_numeric) + list(feature_names_cat) +\
         list(lexical_feature_names)
 
     data_arr = np.nan_to_num(data_arr, nan=-1)
