@@ -40,7 +40,7 @@ def main() -> int:
             )
             score_dict[
                 file_name.split(
-                '_',
+                    '_',
                 )[1]
             ] = f"{df['avg_auc'].values[0]:.6f}\\pm{df['std_auc'].values[0]:.6f}"
 
@@ -48,7 +48,7 @@ def main() -> int:
             continue
 
     print(
-        f"{latex_start_string}&${score_dict['book-page']}$&${score_dict['book']}$&${score_dict['subj']}$\\\\",
+        f"{latex_start_string}&${score_dict['book-page']}$&${score_dict['book']}$&${score_dict['subj']}$\\\\",  # noqa: E501
     )
     return 0
 

@@ -2,6 +2,7 @@ import argparse
 import json
 import os
 import random
+import sys
 
 import joblib
 import numpy as np
@@ -25,6 +26,7 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
 
 from utils import feature_extraction as feature_extraction
+sys.path.append(os.getcwd())
 
 
 def get_nn_model(
@@ -136,13 +138,11 @@ def auroc(y_true, y_pred):
 
 def train_nn(
     spit_criterions, labels,
-    feature_string, feature_names_per_word,
-    model_name, input_window,
+    feature_names_per_word,
+    model_name,
     flag_sequence_bilstm=True,
     word_in_fixation_order=True,
-    use_pos_sequence=True,
     use_reduced_pos_sequence=True,
-    use_entity_sequence=True,
     use_content_word_sequence=True,
     use_numeric=True,
     use_fixation_sequence=True,
@@ -153,7 +153,6 @@ def train_nn(
     batch_size=256,
     epochs=1000,
     save_dir='/home/prasse/work/Projekte/AEye/reading-comprehension/nn/results/',
-    feature_suffix='',
     save_csv=True,
     save_joblib=False,
 ):
@@ -161,9 +160,7 @@ def train_nn(
         for label in labels:
             model_prefix = str(flag_sequence_bilstm) +\
                 '_' + str(word_in_fixation_order) +\
-                '_' + str(use_pos_sequence) +\
                 '_' + str(use_reduced_pos_sequence) +\
-                '_' + str(use_entity_sequence) +\
                 '_' + str(use_content_word_sequence) +\
                 '_' + str(use_numeric) +\
                 '_' + str(use_fixation_sequence) +\
@@ -211,13 +208,13 @@ def train_nn(
                 val_inputs = []
                 test_inputs = []
                 X_train_path = os.path.join(
-                    SB_SAT_PATH, f'X_train_{split_criterion}{fold}.npy',
+                    SB_SAT_PATH, f'X_train_{split_criterion}_{fold}.npy',
                 )
                 X_train_fix_path = os.path.join(
-                    SB_SAT_PATH, f'X_train_{split_criterion}{fold}_fix_data.npy',
+                    SB_SAT_PATH, f'X_train_{split_criterion}_{fold}_fix_data.npy',
                 )
                 y_train_path = os.path.join(
-                    SB_SAT_PATH, f'y_train_{split_criterion}{fold}.npy',
+                    SB_SAT_PATH, f'y_train_{split_criterion}_{fold}.npy',
                 )
                 x_train_all, y_train_all = np.load(X_train_path), np.load(
                     y_train_path, allow_pickle=True,
@@ -305,15 +302,15 @@ def train_nn(
                 # Test Data
                 X_test_path = os.path.join(
                     SB_SAT_PATH,
-                    f'X_test_{split_criterion}{feature_string}{fold}{feature_suffix}.npy',
+                    f'X_test_{split_criterion}_{fold}.npy',
                 )
                 X_test_fix_path = os.path.join(
                     SB_SAT_PATH,
-                    f'X_test_{split_criterion}{feature_string}{fold}{feature_suffix}_fix_data.npy',
+                    f'X_test_{split_criterion}_{fold}_fix_data.npy',
                 )
                 y_test_path = os.path.join(
                     SB_SAT_PATH,
-                    f'y_test_{split_criterion}{feature_string}{fold}{feature_suffix}.npy',
+                    f'y_test_{split_criterion}_{fold}.npy',
                 )
                 x_test_all, y_test_all = np.load(X_test_path), np.load(
                     y_test_path, allow_pickle=True,
@@ -609,11 +606,9 @@ def main():
     word_in_fixation_order = convert_string_to_boolean(
         args.word_in_fixation_order,
     )
-    use_pos_sequence = convert_string_to_boolean(args.use_pos_sequence)
     use_reduced_pos_sequence = convert_string_to_boolean(
         args.use_reduced_pos_sequence,
     )
-    use_entity_sequence = convert_string_to_boolean(args.use_entity_sequence)
     use_content_word_sequence = convert_string_to_boolean(
         args.use_content_word_sequence,
     )
@@ -622,9 +617,6 @@ def main():
         args.use_fixation_sequence,
     )
     save_dir = args.save_dir
-    input_window = args.input_window
-    feature_string = args.feature_string
-    feature_suffix = args.feature_suffix
 
     # select graphic card
     os.environ['CUDA_VISIBLE_DEVICES'] = str(GPU)
@@ -684,15 +676,11 @@ def main():
     train_nn(
         spit_criterions=spit_criterions,
         labels=labels,
-        feature_string=feature_string,
         feature_names_per_word=feature_names_per_word,
         model_name=model_name,
-        input_window=input_window,
         flag_sequence_bilstm=flag_sequence_bilstm,
         word_in_fixation_order=word_in_fixation_order,
-        use_pos_sequence=use_pos_sequence,
         use_reduced_pos_sequence=use_reduced_pos_sequence,
-        use_entity_sequence=use_entity_sequence,
         use_content_word_sequence=use_content_word_sequence,
         use_numeric=use_numeric,
         use_fixation_sequence=use_fixation_sequence,
@@ -703,7 +691,6 @@ def main():
         batch_size=batch_size,
         epochs=epochs,
         save_dir=save_dir,
-        feature_suffix=feature_suffix,
         save_csv=True,
         save_joblib=True,
     )

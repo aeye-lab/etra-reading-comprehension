@@ -4,16 +4,16 @@ This repo provides the code for reproducing the experiments in [Inferring Native
 
 ![BEyeLSTM](https://user-images.githubusercontent.com/43832476/171489683-332d88ba-45f7-4f68-86dd-8288f52bd34c.png)
 The figure above shows our architecture `BEyeLSTM`.
-We investigate and show that we can generalize to unseen test persons for all tasks investigated. 
+We investigate and show that we can generalize to unseen test persons for all tasks investigated.
 
 ## Reproduce the experiments
 
-### Clone this repository 
-You can clone this repository by either using 
+### Clone this repository
+You can clone this repository by either using
 ```bash
 git clone git@github.com:aeye-lab/etra-reading-comprehension
 ```
-or 
+or
 ```bash
 git clone https://github.com/aeye-lab/etra-reading-comprehension
 ```
@@ -25,7 +25,7 @@ You can download the publicly available data here
 ```bash
 git clone git@github.com:ahnchive/SB-SAT
 ```
-or 
+or
 ```bash
 git clone https://github.com/ahnchive/SB-SAT
 ```
@@ -36,7 +36,7 @@ Install all required python packages via:
 pip install -r requirements.txt
 ```
 ### Extract data
-You can create the data splits using: 
+You can create the data splits using:
 ```bash
 python3 utils/generate_text_sequence_splits.py
 ```
