@@ -22,16 +22,16 @@ def load_text_sequence_data() -> Tuple[np.array, ...]:
         'subj', 'book', 'acc_level', 'subj_acc_level', 'confidence', 'difficulty', 'familiarity',
         'interest', 'pressured', 'sleepiness', 'sleephours', 'sex', 'native',
     ]
-    FILE_LABELS = '../SB-SAT/fixation/18sat_labels.csv'
+    FILE_LABELS = 'SB-SAT/fixation/18sat_labels.csv'
     sc = pd.read_csv(FILE_LABELS)
     sc['sex'] = sc['sex'].replace(['F', 'M'], [1, 0])
     binarycols = ('recognition', 'sex', 'native')
     subsetcols = [c for c in labelcols if c not in binarycols]
     sc[subsetcols] = sc[subsetcols].replace([0, 1, 2, 3], [0, 0, 1, 1])
 
-    text_df = pd.read_csv('texts_sb_sat.txt', delimiter='\t')
-    fix_df = pd.read_csv('../SB-SAT/fixation/18sat_fixfinal.csv')
-    surprisal_df = pd.read_csv('surprisal.csv')
+    text_df = pd.read_csv('utils/texts_sb_sat.txt', delimiter='\t')
+    fix_df = pd.read_csv('SB-SAT/fixation/18sat_fixfinal.csv')
+    surprisal_df = pd.read_csv('utils/surprisal.csv')
     texts = text_df.title.unique().tolist()
     subjects = fix_df.RECORDING_SESSION_LABEL.unique().tolist()
     label_arr = np.empty((0, sc.shape[1]))
