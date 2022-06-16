@@ -259,9 +259,9 @@ def write_npys(
 def main() -> int:
     label_arr, data_arr_CNN, label_dict, fix_data = load_text_sequence_data()
     save_path = 'paper_splits/'
-    os.makedirs(save_path)
+    os.makedirs(save_path, exist_ok=True)
     for split_criterion in ['subj', 'book', 'book-page']:
-        os.makedirs(os.path.join(save_path, split_criterion))
+        os.makedirs(os.path.join(save_path, split_criterion), exist_ok=True)
         print(f'Creating files for split {split_criterion}...')
         write_npys(
             label_arr=label_arr,
