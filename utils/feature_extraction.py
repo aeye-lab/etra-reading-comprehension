@@ -70,21 +70,20 @@ reduced_pos_dict = {
 #       n_lefts: number of dependencies to the left
 #       lefts: dependencies to the left
 def parse_dependency(text) -> Tuple[
-    List[List[int]], List[List[int]], List[
-        List[str]
-    ], List[List[int]], List[List[str]],
+    List[List[str]], List[List[int]], List[List[str]],
+    List[List[int]], List[List[str]], List[List[int]],
 ]:
     nlp = spacy.load('en_core_web_sm')
     nlp.tokenizer = spacy.tokenizer.Tokenizer(
         nlp.vocab, token_match=re.compile(r'\S+').match,
     )
     doc = nlp(text)
-    n_rights = [[] for _ in range(len(text.split()))]
-    n_lefts = [[] for _ in range(len(text.split()))]
-    rights = [[] for _ in range(len(text.split()))]
-    lefts = [[] for _ in range(len(text.split()))]
-    deps = [[] for _ in range(len(text.split()))]
-    dep_distance = [[] for _ in range(len(text.split()))]
+    n_rights: List[List[int]] = [[] for _ in range(len(text.split()))]
+    n_lefts: List[List[int]] = [[] for _ in range(len(text.split()))]
+    rights: List[List[str]] = [[] for _ in range(len(text.split()))]
+    lefts: List[List[str]] = [[] for _ in range(len(text.split()))]
+    deps: List[List[str]] = [[] for _ in range(len(text.split()))]
+    dep_distance: List[List[int]] = [[] for _ in range(len(text.split()))]
 
     for idx, token in enumerate(doc):
         deps[idx] = token.dep_
