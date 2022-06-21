@@ -1,5 +1,7 @@
 Inferring Native and Non-Native Human Reading Comprehension and Subjective Text Difficulty from Scanpaths in Reading
 ====================================================================================================================
+[![paper](https://img.shields.io/static/v1?label=paper&message=download%20link&color=brightgreen)](https://dl.acm.org/doi/abs/10.1145/3517031.3529639)
+
 This repo provides the code for reproducing the experiments in [Inferring Native and Non-Native Human Reading Comprehension and Subjective Text Difficulty from Scanpaths in Reading](https://dl.acm.org/doi/abs/10.1145/3517031.3529639).
 
 ![BEyeLSTM](https://user-images.githubusercontent.com/43832476/171489683-332d88ba-45f7-4f68-86dd-8288f52bd34c.png)
