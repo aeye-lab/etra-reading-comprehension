@@ -312,7 +312,7 @@ def evaluate_model(
     pd_init['std_auc'] = 0
     for i in range(0, num_folds):
         pd_init['std_auc'] += (pd_init[f'fold{i}_auc'] - pd_init['avg_auc'])**2
-    pd_init['std_auc'] = (pd_init['std_auc']/num_folds)**(1/2)
+    pd_init['std_auc'] = (pd_init['std_auc'] / num_folds)**(1 / 2)
 
     pd_init.to_csv(save_path, index=None)
 
