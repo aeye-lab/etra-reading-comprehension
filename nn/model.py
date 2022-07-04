@@ -3,6 +3,7 @@ import json
 import os
 import random
 import sys
+sys.path.append(os.getcwd())
 
 import joblib
 import numpy as np
@@ -26,7 +27,6 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
 
 from utils import feature_extraction as feature_extraction
-sys.path.append(os.getcwd())
 
 
 def get_nn_model(
@@ -549,15 +549,12 @@ def train_nn(
             pd_init['std_auc'] = 0
             out_dict['std_auc'] = 0
             for i in range(0, num_folds):
-                pd_init['std_auc'] += (
-                    pd_init[f'fold{i}_auc'] -
-                    pd_init['avg_auc']
-                )**2
+                pd_init['std_auc'] += (pd_init[f'fold{i}_auc'] - pd_init['avg_auc'])**2
                 out_dict['std_auc'] += (
                     out_dict[f'fold{i}_auc'] - out_dict['avg_auc']
                 )**2
-            pd_init['std_auc'] = (pd_init['std_auc']/num_folds)**(1/2)
-            out_dict['std_auc'] = (out_dict['std_auc']/num_folds)**(1/2)
+            pd_init['std_auc'] = (pd_init['std_auc'] / num_folds)**(1 / 2)
+            out_dict['std_auc'] = (out_dict['std_auc'] / num_folds)**(1 / 2)
             if save_csv:
                 pd_init.to_csv(csv_save_path, index=None)
             if save_joblib:

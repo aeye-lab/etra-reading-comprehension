@@ -82,26 +82,26 @@ def load_text_sequence_data() -> Tuple[np.array, ...]:
                 if np.isnan(cur_fix):
                     cur_list_element = 0
                     # duration
-                    fixation_durations[cur_list_element-4].extend(text_sub_df.loc[np.isnan(text_sub_df.CURRENT_FIX_INTEREST_AREA_ID)].CURRENT_FIX_DURATION.values.tolist())  # noqa: E501
+                    fixation_durations[cur_list_element - 4].extend(text_sub_df.loc[np.isnan(text_sub_df.CURRENT_FIX_INTEREST_AREA_ID)].CURRENT_FIX_DURATION.values.tolist())  # noqa: E501
                     # fixation sequence
-                    fixation_location_x[cur_list_element-4].extend(text_sub_df.loc[np.isnan(text_sub_df.CURRENT_FIX_INTEREST_AREA_ID)].CURRENT_FIX_X.values.tolist())  # noqa: E501
-                    fixation_location_y[cur_list_element-4].extend(text_sub_df.loc[np.isnan(text_sub_df.CURRENT_FIX_INTEREST_AREA_ID)].CURRENT_FIX_Y.values.tolist())  # noqa: E501
-                    fixation_id[cur_list_element-4].extend(text_sub_df.loc[np.isnan(text_sub_df.CURRENT_FIX_INTEREST_AREA_ID)].index.values.tolist())  # noqa: E501
-                    fix_aoi_id[cur_list_element-4].extend(text_sub_df.loc[np.isnan(text_sub_df.CURRENT_FIX_INTEREST_AREA_ID)].CURRENT_FIX_INTEREST_AREA_ID.values.tolist())  # noqa: E501
-                    prev_fix_aoi_id[cur_list_element-4].extend([text_sub_df.iloc[idx - 1].CURRENT_FIX_INTEREST_AREA_ID for idx in text_sub_df.loc[np.isnan(text_sub_df.CURRENT_FIX_INTEREST_AREA_ID)].index.values.tolist()])  # noqa: E501
-                    fixation_distance[cur_list_element-4] = [0 if (np.isnan(x) and np.isnan(y)) else 0 if (np.isnan(x) or np.isnan(y)) else x - y for x, y in zip(fix_aoi_id[cur_list_element-4], prev_fix_aoi_id[cur_list_element-4])]  # noqa: E501
+                    fixation_location_x[cur_list_element - 4].extend(text_sub_df.loc[np.isnan(text_sub_df.CURRENT_FIX_INTEREST_AREA_ID)].CURRENT_FIX_X.values.tolist())  # noqa: E501
+                    fixation_location_y[cur_list_element - 4].extend(text_sub_df.loc[np.isnan(text_sub_df.CURRENT_FIX_INTEREST_AREA_ID)].CURRENT_FIX_Y.values.tolist())  # noqa: E501
+                    fixation_id[cur_list_element - 4].extend(text_sub_df.loc[np.isnan(text_sub_df.CURRENT_FIX_INTEREST_AREA_ID)].index.values.tolist())  # noqa: E501
+                    fix_aoi_id[cur_list_element - 4].extend(text_sub_df.loc[np.isnan(text_sub_df.CURRENT_FIX_INTEREST_AREA_ID)].CURRENT_FIX_INTEREST_AREA_ID.values.tolist())  # noqa: E501
+                    prev_fix_aoi_id[cur_list_element - 4].extend([text_sub_df.iloc[idx - 1].CURRENT_FIX_INTEREST_AREA_ID for idx in text_sub_df.loc[np.isnan(text_sub_df.CURRENT_FIX_INTEREST_AREA_ID)].index.values.tolist()])  # noqa: E501
+                    fixation_distance[cur_list_element - 4] = [0 if (np.isnan(x) and np.isnan(y)) else 0 if (np.isnan(x) or np.isnan(y)) else x - y for x, y in zip(fix_aoi_id[cur_list_element - 4], prev_fix_aoi_id[cur_list_element - 4])]  # noqa: E501
                 else:
                     cur_list_element = int(cur_fix)
                     # duration
-                    fixation_durations[cur_list_element-4].extend(text_sub_df.loc[text_sub_df.CURRENT_FIX_INTEREST_AREA_ID == cur_fix].CURRENT_FIX_DURATION.values.tolist())  # noqa: E501
+                    fixation_durations[cur_list_element - 4].extend(text_sub_df.loc[text_sub_df.CURRENT_FIX_INTEREST_AREA_ID == cur_fix].CURRENT_FIX_DURATION.values.tolist())  # noqa: E501
                     # fixation sequence
-                    fixation_location_x[cur_list_element-4].extend(text_sub_df.loc[text_sub_df.CURRENT_FIX_INTEREST_AREA_ID == cur_fix].CURRENT_FIX_X.values.tolist())  # noqa: E501
-                    fixation_location_y[cur_list_element-4].extend(text_sub_df.loc[text_sub_df.CURRENT_FIX_INTEREST_AREA_ID == cur_fix].CURRENT_FIX_Y.values.tolist())  # noqa: E501
-                    fixation_id[cur_list_element-4].extend(text_sub_df.loc[text_sub_df.CURRENT_FIX_INTEREST_AREA_ID == cur_fix].index.values.tolist())  # noqa: E501
+                    fixation_location_x[cur_list_element - 4].extend(text_sub_df.loc[text_sub_df.CURRENT_FIX_INTEREST_AREA_ID == cur_fix].CURRENT_FIX_X.values.tolist())  # noqa: E501
+                    fixation_location_y[cur_list_element - 4].extend(text_sub_df.loc[text_sub_df.CURRENT_FIX_INTEREST_AREA_ID == cur_fix].CURRENT_FIX_Y.values.tolist())  # noqa: E501
+                    fixation_id[cur_list_element - 4].extend(text_sub_df.loc[text_sub_df.CURRENT_FIX_INTEREST_AREA_ID == cur_fix].index.values.tolist())  # noqa: E501
                     # to calculate regression path
-                    fix_aoi_id[cur_list_element-4].extend(text_sub_df.loc[text_sub_df.CURRENT_FIX_INTEREST_AREA_ID == cur_fix].CURRENT_FIX_INTEREST_AREA_ID.values.tolist())  # noqa: E501
-                    prev_fix_aoi_id[cur_list_element-4].extend([text_sub_df.iloc[idx - 1].CURRENT_FIX_INTEREST_AREA_ID for idx in text_sub_df.loc[text_sub_df.CURRENT_FIX_INTEREST_AREA_ID == cur_fix].index.values.tolist()])  # noqa: E501
-                    fixation_distance[cur_list_element-4] = [0 if (np.isnan(x) and np.isnan(y)) else 0 if (np.isnan(x) or np.isnan(y)) else x - y for x, y in zip(fix_aoi_id[cur_list_element-4], prev_fix_aoi_id[cur_list_element-4])]  # noqa: E501
+                    fix_aoi_id[cur_list_element - 4].extend(text_sub_df.loc[text_sub_df.CURRENT_FIX_INTEREST_AREA_ID == cur_fix].CURRENT_FIX_INTEREST_AREA_ID.values.tolist())  # noqa: E501
+                    prev_fix_aoi_id[cur_list_element - 4].extend([text_sub_df.iloc[idx - 1].CURRENT_FIX_INTEREST_AREA_ID for idx in text_sub_df.loc[text_sub_df.CURRENT_FIX_INTEREST_AREA_ID == cur_fix].index.values.tolist()])  # noqa: E501
+                    fixation_distance[cur_list_element - 4] = [0 if (np.isnan(x) and np.isnan(y)) else 0 if (np.isnan(x) or np.isnan(y)) else x - y for x, y in zip(fix_aoi_id[cur_list_element - 4], prev_fix_aoi_id[cur_list_element - 4])]  # noqa: E501
             features, features_names = feature_extraction.get_linguistic_features_for_lists(
                 fixation_list=fixation_durations,
                 fixations_numbers=fixation_id,
@@ -154,7 +154,7 @@ def load_text_sequence_data() -> Tuple[np.array, ...]:
                     fix_data,
                     np.pad(
                         np.array(fix_data_tmp, ndmin=3),
-                        pad_width=((0, 0), (0, 398-fix_data_tmp_len), (0, 0)),
+                        pad_width=((0, 0), (0, 398 - fix_data_tmp_len), (0, 0)),
                     ),
                 ],
             )

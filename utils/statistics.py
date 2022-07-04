@@ -17,7 +17,7 @@ def test_mapping() -> int:
             ],
         ).split()
         for i in range(len(tmp_text)):
-            sb_sat_word = fix_df.loc[fix_df.CURRENT_FIX_INTEREST_AREA_ID == i+4].loc[fix_df.page_name == texts].CURRENT_FIX_INTEREST_AREA_LABEL.iloc[0]  # noqa: E501
+            sb_sat_word = fix_df.loc[fix_df.CURRENT_FIX_INTEREST_AREA_ID == i + 4].loc[fix_df.page_name == texts].CURRENT_FIX_INTEREST_AREA_LABEL.iloc[0]  # noqa: E501
             our_word = tmp_text[i]
             assert sb_sat_word == our_word, print(
                 f'{sb_sat_word=} does not match {our_word=}',
