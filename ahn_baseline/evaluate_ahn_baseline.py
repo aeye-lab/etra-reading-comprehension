@@ -175,7 +175,7 @@ def evaluate_model(
                         set(
                             y_train_all[
                                 :,
-                                split_criterion_dict[split_criterion]
+                                split_criterion_dict[split_criterion],
                             ],
                         ),
                     ),
@@ -193,28 +193,28 @@ def evaluate_model(
             x_train = x_train_all[
                 np.isin(
                     y_train_all[
-                        :, split_criterion_dict[split_criterion]
+                        :, split_criterion_dict[split_criterion],
                     ], N_train_sub,
                 )
             ]
             x_val = x_train_all[
                 np.isin(
                     y_train_all[
-                        :, split_criterion_dict[split_criterion]
+                        :, split_criterion_dict[split_criterion],
                     ], N_test_sub,
                 )
             ]
             y_train = y_train_all[
                 np.isin(
                     y_train_all[
-                        :, split_criterion_dict[split_criterion]
+                        :, split_criterion_dict[split_criterion],
                     ], N_train_sub,
                 )
             ]
             y_val = y_train_all[
                 np.isin(
                     y_train_all[
-                        :, split_criterion_dict[split_criterion]
+                        :, split_criterion_dict[split_criterion],
                     ], N_test_sub,
                 )
             ]

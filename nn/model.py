@@ -251,7 +251,7 @@ def train_nn(
                                 set(
                                     y_train_all[
                                         :,
-                                        split_criterion_dict[split_criterion]
+                                        split_criterion_dict[split_criterion],
                                     ],
                                 ),
                             ),
@@ -270,14 +270,14 @@ def train_nn(
                     train_idx = np.where(
                         np.isin(
                             y_train_all[
-                                :, split_criterion_dict[split_criterion]
+                                :, split_criterion_dict[split_criterion],
                             ], N_train_sub,
                         ),
                     )[0]
                     val_idx = np.where(
                         np.isin(
                             y_train_all[
-                                :, split_criterion_dict[split_criterion]
+                                :, split_criterion_dict[split_criterion],
                             ], N_test_sub,
                         ),
                     )[0]
