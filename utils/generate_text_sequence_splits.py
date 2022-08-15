@@ -37,7 +37,7 @@ def load_text_sequence_data() -> Tuple[np.array, ...]:
     label_arr = np.empty((0, sc.shape[1]))
     data_arr = np.empty((0, 150, 53))
     fix_data = np.empty((0, 398, 5))
-    label_dict = {label: idx for idx, label in enumerate(labelcols)}
+    label_dict = {label: idx for idx, label in enumerate(sc.columns.tolist())}
     for text_id in texts:
         print(f'Calculating for {text_id=}....')
         text_fix_df = fix_df.loc[fix_df.page_name == text_id]
