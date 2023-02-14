@@ -1,10 +1,9 @@
+from __future__ import annotations
+
 import json
 import os
 import random
 from typing import Any
-from typing import Dict
-from typing import List
-from typing import Tuple
 
 import feature_extraction
 import numpy as np
@@ -13,7 +12,8 @@ from sklearn.model_selection import KFold
 from tqdm import tqdm
 
 
-def load_text_sequence_data() -> Tuple[np.array, ...]:
+def load_text_sequence_data(
+) -> tuple[np.ndarray, np.ndarray, dict[str, Any], np.ndarray]:
     datacols = [
         'CURRENT_FIX_X', 'CURRENT_FIX_Y', 'CURRENT_FIX_DURATION',
         'CURRENT_FIX_PUPIL', 'CURRENT_FIX_INTEREST_AREA_ID',
@@ -61,19 +61,19 @@ def load_text_sequence_data() -> Tuple[np.array, ...]:
                 sc.subj ==
                 subject
             ].loc[sc.book == text_id.split('-')[1]]
-            fixation_durations: List[List[int]] = [[]
+            fixation_durations: list[list[int]] = [[]
                                                    for word in range(len(text_list))]
-            fixation_id: List[List[float]] = [[]
+            fixation_id: list[list[float]] = [[]
                                               for word in range(len(text_list))]
-            fix_aoi_id: List[List[float]] = [[]
+            fix_aoi_id: list[list[float]] = [[]
                                              for word in range(len(text_list))]
-            prev_fix_aoi_id: List[List[float]] = [[]
+            prev_fix_aoi_id: list[list[float]] = [[]
                                                   for word in range(len(text_list))]
-            fixation_distance: List[List[float]] = [[]
+            fixation_distance: list[list[float]] = [[]
                                                     for word in range(len(text_list))]
-            fixation_location_x: List[List[float]] = [[]
+            fixation_location_x: list[list[float]] = [[]
                                                       for word in range(len(text_list))]
-            fixation_location_y: List[List[float]] = [[]
+            fixation_location_y: list[list[float]] = [[]
                                                       for word in range(len(text_list))]
             text_sub_df = text_fix_df.loc[text_fix_df.RECORDING_SESSION_LABEL == subject].reset_index(drop=True)  # noqa: E501
             fix_data_tmp = text_sub_df[datacols].copy(deep=True)
@@ -154,7 +154,9 @@ def load_text_sequence_data() -> Tuple[np.array, ...]:
                     fix_data,
                     np.pad(
                         np.array(fix_data_tmp, ndmin=3),
-                        pad_width=((0, 0), (0, 398 - fix_data_tmp_len), (0, 0)),
+                        pad_width=(
+                            (0, 0), (0, 398 - fix_data_tmp_len), (0, 0),
+                        ),
                     ),
                 ],
             )
@@ -163,11 +165,11 @@ def load_text_sequence_data() -> Tuple[np.array, ...]:
 
 
 def write_npys(
-    label_arr: np.array,
-    data_arr_CNNs: np.array,
-    label_dict: Dict[str, Any],
+    label_arr: np.ndarray,
+    data_arr_CNNs: list[np.ndarray],
+    label_dict: dict[str, Any],
     split_criterion: str,
-    suffixe: List[str],
+    suffixe: list[str],
     save_path: str = '',
 ) -> int:
     with open(f'{save_path}labels_dict.json', 'w') as fp:

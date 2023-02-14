@@ -1,7 +1,8 @@
+from __future__ import annotations
+
 import json
 import os
 import random
-from typing import Tuple
 
 import numpy as np
 import pandas as pd
@@ -35,7 +36,7 @@ tf_session = tf.compat.v1.Session(config=config)
 
 def get_model(
     model_name: str,
-    input_shape: Tuple[int, int] = (398, 4),
+    input_shape: tuple[int, int] = (398, 4),
 ) -> Model:
     if model_name == 'rnn':
         model = Sequential()
