@@ -1,7 +1,7 @@
+from __future__ import annotations
+
 import re
 from typing import Any
-from typing import List
-from typing import Tuple
 
 import numpy as np
 import spacy.attrs
@@ -69,21 +69,21 @@ reduced_pos_dict = {
 #       rights: dependencies to the right
 #       n_lefts: number of dependencies to the left
 #       lefts: dependencies to the left
-def parse_dependency(text) -> Tuple[
-    List[List[str]], List[List[int]], List[List[str]],
-    List[List[int]], List[List[str]], List[List[int]],
+def parse_dependency(text) -> tuple[
+    list[list[str]], list[list[int]], list[list[str]],
+    list[list[int]], list[list[str]], list[list[int]],
 ]:
     nlp = spacy.load('en_core_web_sm')
     nlp.tokenizer = spacy.tokenizer.Tokenizer(
         nlp.vocab, token_match=re.compile(r'\S+').match,
     )
     doc = nlp(text)
-    n_rights: List[List[int]] = [[] for _ in range(len(text.split()))]
-    n_lefts: List[List[int]] = [[] for _ in range(len(text.split()))]
-    rights: List[List[str]] = [[] for _ in range(len(text.split()))]
-    lefts: List[List[str]] = [[] for _ in range(len(text.split()))]
-    deps: List[List[str]] = [[] for _ in range(len(text.split()))]
-    dep_distance: List[List[int]] = [[] for _ in range(len(text.split()))]
+    n_rights: list[list[int]] = [[] for _ in range(len(text.split()))]
+    n_lefts: list[list[int]] = [[] for _ in range(len(text.split()))]
+    rights: list[list[str]] = [[] for _ in range(len(text.split()))]
+    lefts: list[list[str]] = [[] for _ in range(len(text.split()))]
+    deps: list[list[str]] = [[] for _ in range(len(text.split()))]
+    dep_distance: list[list[int]] = [[] for _ in range(len(text.split()))]
 
     for idx, token in enumerate(doc):
         deps[idx] = token.dep_
@@ -972,7 +972,7 @@ def get_features_from_df_list_categorical(
     df_list,
     use_cols=['PREVIOUS_SAC_DIRECTION'],
     feature_values=[['DOWN', 'LEFT', 'RIGHT', 'UP']],
-) -> Tuple[Any, List[str]]:
+) -> tuple[Any, list[str]]:
     feature_number = 0
     for use_col, cur_feature_values in zip(use_cols, feature_values):
         feature_number += (2 * len(cur_feature_values))
@@ -983,7 +983,7 @@ def get_features_from_df_list_categorical(
         feature_id = 0
         for use_col, cur_feature_values in zip(use_cols, feature_values):
             # print(use_col)
-            cur_feats = np.array(cur_df[use_col], dtype=np.str)
+            cur_feats = np.array(cur_df[use_col], dtype=str)
             for feature_value in cur_feature_values:
                 # print(use_col)
                 # print(feature_value)
