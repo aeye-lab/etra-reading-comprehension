@@ -14,10 +14,12 @@ We investigate and show that we can generalize to unseen test persons for all ta
 You can clone this repository by either using
 ```bash
 git clone git@github.com:aeye-lab/etra-reading-comprehension
+cd etra-reading-comprehension
 ```
 or
 ```bash
 git clone https://github.com/aeye-lab/etra-reading-comprehension
+cd
 ```
 depending on your preferences and settings.
 Afterward, change into the directory by using `cd etra-reading-comprehension`.
